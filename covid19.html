@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Données COVID-19</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+        <div>
+            <canvas id="chart1" width="400" height="600"></canvas>
+        </div>
+        <small><a
+                href="https://www.data.gouv.fr/fr/datasets/synthese-des-indicateurs-de-suivi-de-lepidemie-covid-19/">Synthèse
+                des indicateurs de suivi de l’épidémie COVID-19</a></small>
+
+        <script>
+            var request = new XMLHttpRequest();
+            request.open("GET", "data/cas.json", false);
+            request.send(null);
+            var res = JSON.parse(request.responseText);
+
+            let cas = [];
+            let morts = [];
+            let date = [];
+            let hosp = [];
+            let rea = []
+
+            let i = 0;
+            while (++i < res.length) {
+                date.push(res[i]["date"]);
+                cas.push(res[i]["conf_j1"]);
+                morts.push(res[i]["dc_tot"]);
+                hosp.push(res[i]["hosp"]);
+                rea.push(res[i]["rea"]);
+            }
+
+            const data = {
+                labels: date,
+                datasets: [{
+                        label: "Décès tot.",
+                        data: morts,
+                        borderColor: '#4F4539',
+                        borderWidth: 2
+                    },
+                    {
+                        label: "Hospitalisations",
+                        data: hosp,
+                        borderColor: '#600093',
+                        borderWidth: 2
+                    },
+                    {
+                        label: "Nouveau cas J1",
+                        data: cas,
+                        borderColor: '#F9AA06',
+                        borderWidth: 2,
+                        fill: true,
+                        backgroundColor: "rgba(249, 170, 6, 0.1)"
+                    },
+                    {
+                        label: "Réas",
+                        data: rea,
+                        borderColor: '#FC0379',
+                        borderWidth: 2,
+                    },
+
+                ]
+            };
+
+            const ctx = document.getElementById('chart1');
+            const chart1 = new Chart(ctx, {
+                type: 'line',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    pointRadius: 0,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Statistiques COVID-19 France'
+                        }
+                    },
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

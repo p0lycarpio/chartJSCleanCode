@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Données hospitalières</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+	<canvas id="chart1" width="400" height="600"></canvas>
+	<script>
+		var request = new XMLHttpRequest();
+		request.open("GET", "data/dep-03-12-2021.json", false);
+		request.send(null);
+		var res = JSON.parse(request.responseText);
+
+		let region = new Map();
+		let region2 = new Map();
+
+		let i = 0;
+		while (++i < res.length) {
+			let reg = res[i]["lib_reg"];
+			if (region.has(reg) == false) {
+				region.set(reg, res[i]["dchosp"]);
+				region2.set(reg, res[i]["hosp"]);
+			} else {
+				region.set(reg, region.get(reg) + res[i]["dchosp"]);
+				region2.set(reg, region2.get(reg) + res[i]["hosp"]);
+			}
+
+		}
+
+		const regionAsc = new Map([...region.entries()].sort((b, a) => a[1] - b[1]));
+		const region2Asc = new Map([...region2.entries()].sort((b, a) => a[1] - b[1]));
+	let talble = ([1,2,3],[1,2,3])
+
+		const data = {
+			labels: Array.from(region.keys()),
+			datasets: [{
+					label: 'Décès hospitaliers',
+					data: Array.from(region.values()),
+					backgroundColor: 'rgba(90, 90, 90, .6)',
+				},
+				{
+					label: 'Patients actuellement hospitalisés',
+					data: Array.from(region2.values()),
+					backgroundColor: 'rgba(69, 123, 80, .6)',
+				}
+			]
+		};
+
+		const ctx = document.getElementById('chart1');
+		const chart1 = new Chart(ctx, {
+			type: 'bar',
+			data: data,
+			options: {
+				indexAxis: 'y',
+				maintainAspectRatio: false,
+				responsive: true,
+				scales: {
+					x: {
+						stacked: true,
+					},
+					y: {
+						beginAtZero: true,
+						stacked: true
+					}
+				},
+				plugins: {
+					title: {
+						display: true,
+						text: 'Données hospitalières'
+					},
+					subtitle: {
+						display: true,
+						text: 'le 30/12/2021'
+					}
+				}
+			}
+		});
+	</script>
+</body>
+
+</html>
