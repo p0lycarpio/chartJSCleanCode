@@ -1,0 +1,407 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Présentation chart.js</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+
+<section id="intro">
+	<img src="logo.svg" alt="chart.js" width="420px">
+	<p>Baptiste Lemonnier & Arsène Reymond</p>
+</section>
+
+<section id="graphiques" data-background-color="rgba(247,250,252)">
+	<h3>Types de graphiques</h3>
+
+	<section id="line">
+		<div style="height:480px">
+			<canvas data-chart="line">
+<!--
+{
+    "data": {
+        "labels": ["January", " February", " March", " April", " May", " June", " July"],
+        "datasets": [{
+                "data": [65, 59, 80, 81, 56, 55, 40],
+                "label": "My first dataset",
+                "backgroundColor": "rgba(20,220,220,.8)",
+                "borderColor": "rgba(20,220,220,.8)"
+            },
+            {
+                "data": [28, 48, 40, 19, 86, 27, 90],
+                "label": "My second dataset",
+                "backgroundColor": "rgba(220,120,120,.8)",
+                "borderColor": "rgba(220,120,120,.8)",
+                "borderDash": [5, 10]
+            }
+        ]
+    }
+}
+-->
+			</canvas>
+		</div>
+	</section>
+
+	<section id="bar">
+		<div style="height:480px">
+			<canvas data-chart="bar">
+<!--
+{
+    "options": {
+        "indexAxis": "y"
+    },
+    "data": {
+        "labels": ["Africa", "Asia", "Europe", "Latin America", "North America"],
+        "datasets": [{
+            "label": "Population (millions)",
+            "backgroundColor": ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+            "data": [2478, 5267, 734, 784, 433]
+        }]
+    }
+}
+-->
+			</canvas>
+		</div>
+	</section>
+
+	<section id="bar2">
+		<div style="height:480px">
+			<canvas data-chart="bar">
+<!--
+{
+    "data": {
+        "labels": ["January", "February", "March", "April", "May", "June", "July"],
+        "datasets": [{
+                "label": "Premier dataset",
+                "backgroundColor": ["rgba(20,220,220,.8)"],
+                "data": [65, 59, 80, 81, 56, 55, 40]
+            },
+            {
+                "label": "Second dataset",
+                "backgroundColor": ["rgba(220,120,120,.8)"],
+                "data": [28, 48, 40, 19, 86, 27, 90]
+            }
+        ]
+    }
+}
+-->
+			</canvas>
+		</div>
+	</section>
+
+	<section id="pie">
+		<div style="height:480px">
+			<canvas data-chart="pie">
+<!--
+{
+    "data": {
+        "labels": ["Orange", "Jaune", "Rose", "Vert", "Bleu"],
+        "datasets": [{
+            "label": "Données ",
+            "backgroundColor": ["#FF8F00", "#FFD547", "#EB0066", "#00D1C6", "#0096EE"],
+            "data": [30, 25, 25, 10, 10]
+        }]
+    },
+    "options": {
+        "plugins": {
+            "legend": {
+                "position": "bottom"
+            }
+        }
+    }
+}
+-->
+
+			</canvas>
+		</div>
+	</section>
+
+	<section id="radar">
+		<div style="height:480px">
+			<canvas data-chart="radar">
+<!--
+{
+    "data": {
+        "labels": ["Africa", "Asia", "Europe", "Latin America", "North America"],
+        "datasets": [{
+            "label": "1950",
+            "fill": true,
+            "backgroundColor": "rgba(179,181,198,0.2)",
+            "borderColor": "rgba(179,181,198,1)",
+            "pointBorderColor": "#fff",
+            "pointBackgroundColor": "rgba(179,181,198,1)",
+            "data": [16, 38, 21.69, 38, 26]
+        }, {
+            "label": "2050",
+            "fill": true,
+            "backgroundColor": "rgba(255,99,132,0.2)",
+            "borderColor": "rgba(255,99,132,1)",
+            "pointBorderColor": "#fff",
+            "pointBackgroundColor": "rgba(255,99,132,1)",
+            "data": [32, 54.16, 12, 8.06, 23]
+        }]
+    },
+    "options": {
+        "plugins": {
+            "legend": {
+                "position": "bottom"
+            }
+        }
+    }
+}
+-->
+			</canvas>
+		</div>
+	</section>
+
+	<section id="polar">
+		<div style="height:480px">
+			<canvas data-chart="polarArea">
+<!--
+{
+    "data": {
+        "labels": ["Africa", "Asia", "Europe", "Latin America", "North America"],
+        "datasets": [{
+            "label": "Population (millions)",
+            "backgroundColor": ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+            "data": [2478, 5267, 2369, 5423, 8514]
+        }]
+
+    },
+    "options": {
+        "plugins": {
+            "legend": {
+                "position": "bottom"
+            }
+        }
+    }
+}
+-->
+			</canvas>
+		</div>
+	</section>
+
+	<section id="bubble">
+		<div style="height:480px">
+			<canvas data-chart="bubble">
+<!--
+{
+    "data": {
+        "labels": "Africa",
+        "datasets": [{
+            "label": ["China"],
+            "backgroundColor": "rgba(255,221,50,0.8)",
+            "borderColor": "rgba(255,221,50,1)",
+            "data": [{
+                "x": 21269017,
+                "y": 5.245,
+                "r": 20
+            }]
+        }, {
+            "label": ["Denmark"],
+            "backgroundColor": "rgba(60,186,159,0.8)",
+            "borderColor": "rgba(60,186,159,1)",
+            "data": [{
+                "x": 258702,
+                "y": 7.526,
+                "r": 36
+            }]
+        }, {
+            "label": ["Germany"],
+            "backgroundColor": "#8080C0",
+            "borderColor": "#8080C0",
+            "data": [{
+                "x": 3979083,
+                "y": 6.994,
+                "r": 32
+            }]
+        }, {
+            "label": ["Japan"],
+            "backgroundColor": "rgba(193,46,12,0.8)",
+            "borderColor": "rgba(193,46,12,1)",
+            "data": [{
+                "x": 4931877,
+                "y": 5.921,
+                "r": 15
+            }]
+        }]
+    }
+}
+-->
+			</canvas>
+		</div>
+	</section>
+
+	<section id="mixed">
+		<div style="height:480px">
+			<canvas data-chart="bar">
+<!--
+{
+    "data": {
+        "labels": ["1900", "1950", "1999", "2050"],
+        "datasets": [{
+            "label": "Europe",
+            "type": "line",
+            "borderColor": "#8e5ea2",
+            "data": [408, 547, 675, 734],
+            "fill": false
+        }, {
+            "label": "Africa",
+            "type": "line",
+            "borderColor": "#3e95cd",
+            "data": [133, 221, 783, 2478],
+            "fill": false
+        }, {
+            "label": "Europe",
+            "type": "bar",
+            "backgroundColor": "rgba(255, 213, 71, .5)",
+            "data": [408, 547, 675, 734]
+        }, {
+            "label": "Africa",
+            "type": "bar",
+            "backgroundColor": "rgba(255, 143, 0, .5)",
+            "data": [133, 221, 783, 2478]
+        }]
+    }
+}
+-->
+			</canvas>
+		</div>
+	</section>
+</section>
+
+<section id="installation">
+	<h3>Installation</h3>
+	<p>Node</p>
+	<pre><code data-trim data-noescape>npm install chart.js</code></pre>
+	<pre><code data-trim data-noescape>const Chart = require('chart.js');</code></pre>
+	<p>CDN</p>
+	<pre><code><script src="https://cdnjs.cloudflare.com/ajax/libs/
+Chart.js/3.6.2/chart.min.js"></script></code></pre>
+</section>
+
+<section id="integration">
+	<h3>Intégration</h3>
+	<p>HTML</p>
+	<pre><code data-trim><div>
+		<canvas id="monGraphique" width="400" height="400"></canvas>
+</div></code></pre>
+
+	<p>JS</p>
+	<pre><code>
+const ctx = document.querySelector("monGraphique").getContext("2d");
+const graph = new Chart(ctx, {...});
+</code></pre>
+</section>
+
+<section id="donnees">
+	<h3>Données</h3>
+	<h4>Tableaux</h4>
+	<pre><code data-trim data-noescape>
+data: [20, 10],
+labels: ['a', 'b']
+</code></pre>
+
+	<h4>Objets</h4>
+	<pre><code data-trim data-noescape>
+data: [{x: 10, y: 20}, {x: 15, y: null}, {x: 20, y: 10}]
+</code></pre>
+
+	<pre><code data-trim data-noescape>
+data: [{x:'2016-12-25', y:20}, {x:'2016-12-26', y:10}]
+</code></pre>
+
+	<pre><code data-trim data-noescape>
+data: [{x:'Sales', y:20}, {x:'Revenue', y:10}]
+</code></pre>
+</section>
+
+<section id="configuration">
+    <h3>Configuration</h3>
+
+    <section id="base">
+        <h4>Le minimum</h4>
+        <pre><code data-trim="">
+    const nouveauGraphique = new Chart(ctx, {
+        type: "line",
+        data: data,
+        options: {
+            [...]
+        }
+    });
+        </code></pre>
+    </section>
+
+    <section id="options">
+        <h4>Les options</h4>
+        <ul>
+            <li>Titres</li>
+            <li>Légendes</li>
+            <li>Tooltip</li>
+            <li>Animations</li>
+            <li>Couleurs</li>
+            <li>Opérations mathématiques</li>
+            <li>Interractions</li>
+        </ul>
+    </section>
+</section>
+
+<section id="exemples">
+    <h3>Exemples concrets</h3>
+    <ul>
+        <li><a href="exemples/chart.html" target="_blank">Graphique en barres (COVID-19)</a></li>
+        <li><a href="exemples/covid19.html" target="_blank">Progression (COVID-19)</a></li>
+        <li><em>Démonstration</em></li>
+    </ul>
+</section>
+
+<section id="fin">
+<h1>Merci</h1>
+<h3>Avez-vous des questions ?</h3>
+</section>
+	
+</div>
+</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script src="plugin/chart/chart.min.js"></script>
+	<script src="plugin/chart/plugin.js"></script>
+
+	<script>
+		Reveal.initialize({
+			hash: true,
+			slideNumber: true,
+			width: 1024,
+			height: 700,
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealChart],
+			chart: {
+				defaults: {
+					color: '#666', // color of labels
+					scale: {
+						grid: {
+							color: "#666"
+						}
+					}
+				}
+			}
+		});
+	</script>
+</body>
+
+</html>
