@@ -18,35 +18,30 @@
 		var res = JSON.parse(request.responseText);
 
 		let region = new Map();
-		let region2 = new Map();
 
 		let i = 0;
 		while (++i < res.length) {
 			let reg = res[i]["lib_reg"];
 			if (region.has(reg) == false) {
-				region.set(reg, res[i]["dchosp"]);
-				region2.set(reg, res[i]["hosp"]);
+				region.set(reg, ({ dchosp : res[i]["dchosp"], hosp : res[i]["hosp"]}));
 			} else {
-				region.set(reg, region.get(reg) + res[i]["dchosp"]);
-				region2.set(reg, region2.get(reg) + res[i]["hosp"]);
+				region.set(reg, ({ dchosp : region.get(reg)["dchosp"] + res[i]["dchosp"], hosp : region.get(reg)["hosp"] + res[i]["hosp"]}));
 			}
 
 		}
 
-		const regionAsc = new Map([...region.entries()].sort((b, a) => a[1] - b[1]));
-		const region2Asc = new Map([...region2.entries()].sort((b, a) => a[1] - b[1]));
-	let talble = ([1,2,3],[1,2,3])
+		const regionAsc = new Map([...region.entries()].sort((b, a) => a[1]["dchosp"] - b[1]["dchosp"]));
 
 		const data = {
-			labels: Array.from(region.keys()),
+			labels: Array.from(regionAsc.keys()),
 			datasets: [{
 					label: 'Décès hospitaliers',
-					data: Array.from(region.values()),
+					data: Array.from(regionAsc.values()).map((el) => el.dchosp),
 					backgroundColor: 'rgba(90, 90, 90, .6)',
 				},
 				{
 					label: 'Patients actuellement hospitalisés',
-					data: Array.from(region2.values()),
+					data: Array.from(regionAsc.values()).map((el) => el.hosp),
 					backgroundColor: 'rgba(69, 123, 80, .6)',
 				}
 			]
