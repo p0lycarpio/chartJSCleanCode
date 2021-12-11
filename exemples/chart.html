@@ -8,18 +8,23 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-
 <body>
+	<!-- Je souhaite que le canvas soit affiché ici en lui donnant l'id "chart1" -->
 	<canvas id="chart1" width="400" height="600"></canvas>
 	<script>
+		//initialisation de la requête XML
 		var request = new XMLHttpRequest();
-		request.open("GET", "data/dep-03-12-2021.json", false);
+		//récupération des données voulues
+		request.open("GET", "data/dep-06-12-2021.json", false);
+		//permet d'envoyer la requête au serveur
 		request.send(null);
+		//permet de convertir le JSON en objet js
 		var res = JSON.parse(request.responseText);
-
+		//creation d'une map (clé, valeur)
 		let region = new Map();
 
 		let i = 0;
+		//je rentre les informations que je veux garder dans ma map en y entrant des objets en tant que valeur
 		while (++i < res.length) {
 			let reg = res[i]["lib_reg"];
 			if (region.has(reg) == false) {
@@ -30,8 +35,10 @@
 
 		}
 
+		//j'applique un tri en fonction des dc hospitaliers
 		const regionAsc = new Map([...region.entries()].sort((b, a) => a[1]["dchosp"] - b[1]["dchosp"]));
 
+		//je rentre les datas de l'api dans le chart
 		const data = {
 			labels: Array.from(regionAsc.keys()),
 			datasets: [{
@@ -47,20 +54,24 @@
 			]
 		};
 
+		//j'initialise le chart
 		const ctx = document.getElementById('chart1');
 		const chart1 = new Chart(ctx, {
 			type: 'bar',
 			data: data,
 			options: {
+				//permet d'orienter les bars sur l'axe des y
 				indexAxis: 'y',
-				maintainAspectRatio: false,
+				//garder le ratio width/height
+				maintainAspectRatio: false, 
+				//adapter la taille du chart à élément parent
 				responsive: true,
 				scales: {
 					x: {
 						stacked: true,
 					},
 					y: {
-						beginAtZero: true,
+						//permet de les dc hospitaliers et le nombre de cas hospitaliers soient superposées
 						stacked: true
 					}
 				},
@@ -71,7 +82,7 @@
 					},
 					subtitle: {
 						display: true,
-						text: 'le 30/12/2021'
+						text: 'le 06/12/2021'
 					}
 				}
 			}
