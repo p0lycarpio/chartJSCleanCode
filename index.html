@@ -302,7 +302,7 @@ Chart.js/3.6.2/chart.min.js"></script></code></pre>
 
 	<p>JS</p>
 	<pre><code>
-const ctx = document.querySelector("monGraphique").getContext("2d");
+const ctx = document.querySelector("monGraphique");
 const graph = new Chart(ctx, {...});
 </code></pre>
 </section>
@@ -312,7 +312,7 @@ const graph = new Chart(ctx, {...});
  <section id="data">
 	<h4>Tableaux</h4>
 	<pre><code data-trim data-noescape>
-data: [20, 10],
+data: [20, 10.6],
 labels: ["a", "b"]
 </code></pre>
 
@@ -424,7 +424,6 @@ data: [{x:"Sales", y:20}, {x:"Revenue", y:10}]
     <ul>
         <li><a href="exemples/chart.html" target="_blank">Graphique en barres (COVID-19)</a></li>
         <li><a href="exemples/covid19.html" target="_blank">Progression (COVID-19)</a></li>
-        <li><em>Démonstration</em></li>
     </ul>
 </section>
 
