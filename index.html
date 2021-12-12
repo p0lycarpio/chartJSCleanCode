@@ -287,7 +287,7 @@
 	<h3>Installation</h3>
 	<p>Node</p>
 	<pre><code data-trim data-noescape>npm install chart.js</code></pre>
-	<pre><code data-trim data-noescape>const Chart = require('chart.js');</code></pre>
+	<pre><code data-trim data-noescape>const Chart = require("chart.js");</code></pre>
 	<p>CDN</p>
 	<pre><code><script src="https://cdnjs.cloudflare.com/ajax/libs/
 Chart.js/3.6.2/chart.min.js"></script></code></pre>
@@ -308,11 +308,12 @@ const graph = new Chart(ctx, {...});
 </section>
 
 <section id="donnees">
-	<h3>Données</h3>
+   	<h3>Données</h3>
+ <section id="data">
 	<h4>Tableaux</h4>
 	<pre><code data-trim data-noescape>
 data: [20, 10],
-labels: ['a', 'b']
+labels: ["a", "b"]
 </code></pre>
 
 	<h4>Objets</h4>
@@ -321,12 +322,71 @@ data: [{x: 10, y: 20}, {x: 15, y: null}, {x: 20, y: 10}]
 </code></pre>
 
 	<pre><code data-trim data-noescape>
-data: [{x:'2016-12-25', y:20}, {x:'2016-12-26', y:10}]
+data: [{x:"2016-12-25", y:20}, {x:"2016-12-26", y:10}]
 </code></pre>
 
 	<pre><code data-trim data-noescape>
-data: [{x:'Sales', y:20}, {x:'Revenue', y:10}]
+data: [{x:"Sales", y:20}, {x:"Revenue", y:10}]
 </code></pre>
+</section>
+
+<section id="dataset">
+    <h4>Dataset</h4>
+    <pre><code data-trim="">
+[{
+    type: "bar",
+    data: {
+        labels: ["Janvier", "Février"],
+        datasets: [{
+            label: "Ventes",
+            data: [12, 36, 25],
+            backgroundColor: "#0CA4A5"
+        },
+        {
+            label: "Coûts",
+            data: [56.01, 32.6, 15.69]
+            backgroundColor: "#DBB68F"
+        },
+        {
+            label: "Marges",
+            data: [0.9, 3.6, 4.9],
+            backgroundColor: "#6C91C2"
+        }
+    ]}
+}]
+    </code></pre>
+    </section>
+    <section id="dataset-exemple" data-background-color="#DEE7E7">
+        <div style="height:480px">
+        <canvas data-chart="bar">
+    <!--
+{
+    "data": {
+        "labels": ["Janvier", "Février"],
+        "datasets": [{
+            "label": "Ventes",
+            "data": [12, 36, 25],
+            "backgroundColor": "#0CA4A5"
+        },
+        {
+            "label": "Coûts",
+            "data": [56.01, 32.6, 15.69],
+            "backgroundColor": "#DBB68F"
+
+        },
+        {
+            "label": "Marges",
+            "data": [6.3, 3.6, 4.9],
+            "backgroundColor": "#6C91C2"
+
+        }
+    ]}
+}
+    -->
+</canvas>
+</div>
+</section>
+
 </section>
 
 <section id="configuration">
@@ -392,7 +452,7 @@ data: [{x:'Sales', y:20}, {x:'Revenue', y:10}]
 			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealChart],
 			chart: {
 				defaults: {
-					color: '#666', // color of labels
+					color: "#666", // color of labels
 					scale: {
 						grid: {
 							color: "#666"
