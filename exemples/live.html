@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+    <canvas id="graphique" width="600" height="400"></canvas>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        const ctx = document.getElementById('graphique').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: ["a", "b", "c"],
+                datasets: [{
+                    data: [20, 32, 15],
+                    label: 'Données',
+                    backgroundColor: ['red', 'green', 'blue']
+                
+                }]
+            },
+            options: {
+                responsive: false,
+                indexAxis: 'y',
+                plugins : {
+                title: {
+                    display: true,
+                    text: 'Graphique'
+                }}
+            }
+        })
+    </script>
+</body>
+
+</html>
