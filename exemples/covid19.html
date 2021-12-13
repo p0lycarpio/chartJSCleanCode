@@ -18,13 +18,16 @@
 
 <body>
         <div>
-            <canvas id="chart1" width="400" height="600"></canvas>
+            <canvas id="covid" width="400" height="600"></canvas>
         </div>
+
         <small><a
                 href="https://www.data.gouv.fr/fr/datasets/synthese-des-indicateurs-de-suivi-de-lepidemie-covid-19/">Synthèse
-                des indicateurs de suivi de l’épidémie COVID-19</a></small>
+                des indicateurs de suivi de l’épidémie COVID-19</a>
+        </small>
 
         <script>
+            // Recupération des données en AJAX
             var request = new XMLHttpRequest();
             request.open("GET", "data/cas.json", false);
             request.send(null);
@@ -35,7 +38,8 @@
             let date = [];
             let hosp = [];
             let rea = []
-
+            
+            // Rangement des données dans des tableaux
             let i = 0;
             while (++i < res.length) {
                 date.push(res[i]["date"]);
@@ -45,6 +49,7 @@
                 rea.push(res[i]["rea"]);
             }
 
+            // Initialisation des dataset
             const data = {
                 labels: date,
                 datasets: [{
@@ -77,8 +82,9 @@
                 ]
             };
 
-            const ctx = document.getElementById('chart1');
-            const chart1 = new Chart(ctx, {
+            // Affichage du graph
+            const ctx = document.getElementById('covid');
+            const graph = new Chart(ctx, {
                 type: 'line',
                 data: data,
                 options: {
